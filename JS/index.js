@@ -300,6 +300,7 @@ function update() {
       ctx.drawImage(image, x - 12, y - 14, 32, 32);
     } else {
       image.src = `https://github.com/nishiyu24/24u/blob/main/image/character/walk/kid-walk-${toRight ? "right" : "left"}-${"00" + Math.floor(walkingCount / walkRange)}.png?raw=true`;
+      alert(image.src);
       ctx.drawImage(image, x - 12, y - 14, 32, 32);
     }
 
