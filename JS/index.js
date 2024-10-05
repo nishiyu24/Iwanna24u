@@ -300,7 +300,8 @@ function update() {
       ctx.drawImage(image, x - 12, y - 14, 32, 32);
     } else {
       image.src = `https://github.com/nishiyu24/24u/blob/main/image/character/walk/kid-walk-${toRight ? "right" : "left"}-${"00" + Math.floor(walkingCount / walkRange)}.png?raw=true`;
-      alert(image.src);
+      let animationFPS = document.getElementById("fps");
+      animationFPS.innerHTML = image.src;
       ctx.drawImage(image, x - 12, y - 14, 32, 32);
     }
 
@@ -317,8 +318,8 @@ function update() {
 
     window.requestAnimationFrame(update);
 
-    let animationFPS = document.getElementById("fps");
-    animationFPS.innerHTML = fps;
+    //let animationFPS = document.getElementById("fps");
+    //animationFPS.innerHTML = fps;
 
     // fpsが55以下なら赤文字、それ以上なら黒文字に変更
     if (fps <= 55) {
