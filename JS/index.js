@@ -163,7 +163,7 @@ window.addEventListener("load", update);
 ///////////////////////////////////////////////////////////
 
 function update() {
-
+  let debug = document.getElementById("test");
   // 現在の時間を取得
   let now = performance.now();
   // 経過時間を計算
@@ -299,8 +299,7 @@ function update() {
       ctx.drawImage(image, x - 12, y - 14, 32, 32);
     } else {
       image.src = `https://github.com/nishiyu24/24u/blob/main/image/character/walk/Kid-walk-${toRight ? "right" : "left"}-${"00" + Math.floor(walkingCount / walkRange)}.png?raw=true`;
-      let animationFPS = document.getElementById("fps");
-      animationFPS.innerHTML = image.src;
+      debug.innerHTML = image.src;
       ctx.drawImage(image, x - 12, y - 14, 32, 32);
     }
 
@@ -317,8 +316,8 @@ function update() {
 
     window.requestAnimationFrame(update);
 
-    //let animationFPS = document.getElementById("fps");
-    //animationFPS.innerHTML = fps;
+    let animationFPS = document.getElementById("fps");
+    animationFPS.innerHTML = fps;
 
     // fpsが55以下なら赤文字、それ以上なら黒文字に変更
     if (fps <= 55) {
