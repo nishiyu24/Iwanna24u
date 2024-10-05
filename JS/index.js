@@ -295,10 +295,13 @@ function update() {
       image.src = "./image/GameOver.png";
       ctx.drawImage(image, (960 - image.width) / 2, (800 - image.height) / 2);
     } else if (isJump) {
-      image.src =`https://github.com/nishiyu24/24u/blob/main/image/character/jump/Kid-jump-${toRight ? "right" : "left"}-${vy <= 0 ? "up" : "fall"}.png?raw=true`;
+      //image.src =`https://github.com/nishiyu24/24u/blob/main/image/character/jump/Kid-jump-${toRight ? "right" : "left"}-${vy <= 0 ? "up" : "fall"}.png?raw=true`;
+       image.src = `./image/character/jump/Kid-jump-${toRight ? "right" : "left"}-${vy <= 0 ? "up" : "fall"}.png`;
+       debug.innerHTML = image.src;
       ctx.drawImage(image, x - 12, y - 14, 32, 32);
     } else {
-      image.src = `https://github.com/nishiyu24/24u/blob/main/image/character/walk/Kid-walk-${toRight ? "right" : "left"}-${"00" + Math.floor(walkingCount / walkRange)}.png?raw=true`;
+      //image.src = `https://github.com/nishiyu24/24u/blob/main/image/character/walk/Kid-walk-${toRight ? "right" : "left"}-${"00" + Math.floor(walkingCount / walkRange)}.png?raw=true`;
+      image.src = `./image/character/walk/Kid-walk-${toRight ? "right" : "left"}-${"00" + Math.floor(walkingCount / walkRange)}.png`;
       debug.innerHTML = image.src;
       ctx.drawImage(image, x - 12, y - 14, 32, 32);
     }
