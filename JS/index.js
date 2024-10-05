@@ -302,8 +302,8 @@ function update() {
       ctx.drawImage(image, x - 12, y - 14, 32, 32);
     }
 
-    //ctx.fillStyle = 'red';
-    //ctx.fillRect(x, y, characterSizeX, characterSizeY);
+    ctx.fillStyle = 'red';
+    ctx.fillRect(x, y, characterSizeX, characterSizeY);
 
     // FPSの計算
     frameCount++;
