@@ -63,6 +63,11 @@ function handleKeyup(e) {
 const canvas = document.getElementById("maincanvas");
 const ctx = canvas.getContext("2d");
 
+const offscreenCanvas = document.createElement('canvas');
+offscreenCanvas.width = canvas.width;
+offscreenCanvas.height = canvas.height;
+const offscreenCtx = offscreenCanvas.getContext('2d');
+
 // 死亡BGMの読み込み
 const deadBGM = new Audio('./sound/dead.wav');
 // ジャンプSEの読み込み
@@ -157,6 +162,30 @@ const blocks = [
 // ロード時に画面描画の処理が実行されるようにする
 window.addEventListener("load", update);
 
+function loadImage(src, callback) {
+  return new Promise(resolve => {
+    const img = new Image();
+    img.onload = () => {
+      resolve(img);
+    };
+    img.src = src;
+  });
+}
+
+async function drawBackground() {
+  const promises = blocks.map(block => {
+    const src = block.btype === 'static' ? './image/ground/Grasslands.png' : `./image/ground/Needle-00${block.r}.png`;
+    return loadImage(src);
+  });
+
+  const images = await Promise.all(promises);
+
+  images.forEach((image, index) => {
+    offscreenCtx.drawImage(image, blocks[index].x, blocks[index].y, blocks[index].w, blocks[index].h);
+  });
+}
+
+drawBackground();
 
 ///////////////////////////////////////////////////////////
 /*/////////////////  メイン繰り返し部分  /////////////////*/
@@ -176,6 +205,8 @@ function update() {
 
     // 画面全体をクリア
     ctx.clearRect(0, 0, 960, 800);
+    ctx.drawImage(offscreenCanvas, 0, 0);
+
 
     // 更新後の座標
     var updatedX = x;
@@ -276,17 +307,6 @@ function update() {
         ctx.fillStyle = 'red';
         ctx.fillRect(Bullet.bulletX, Bullet.bulletY, 4, 4);
       }
-    }
-
-    // 地面の画像を表示
-    for (const block of blocks) {
-      var groundImage = new Image();
-      if(block.btype == "static"){
-        groundImage.src = `./image/ground/Grasslands.png`;
-      }else if(block.btype == "needle"){
-        groundImage.src = `./image/ground/Needle-00${block.r}.png`;
-      }
-      ctx.drawImage(groundImage, block.x, block.y, block.w, block.h);
     }
 
     // 主人公の画像を表示
