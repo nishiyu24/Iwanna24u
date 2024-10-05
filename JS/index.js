@@ -295,10 +295,10 @@ function update() {
       image.src = "./image/GameOver.png";
       ctx.drawImage(image, (960 - image.width) / 2, (800 - image.height) / 2);
     } else if (isJump) {
-      image.src = `./image/character/jump/kid-jump-${toRight ? "right" : "left"}-${vy <= 0 ? "up" : "fall"}.png`;
+      image.src = `https://github.com/nishiyu24/24u/blob/main/image/character/jump/kid-jump-${toRight ? "right" : "left"}-${vy <= 0 ? "up" : "fall"}.png?raw=true`;
       ctx.drawImage(image, x - 12, y - 14, 32, 32);
     } else {
-      image.src = `./image/character/walk/kid-walk-${toRight ? "right" : "left"}-${"00" + Math.floor(walkingCount / walkRange)}.png`;
+      image.src = `https://github.com/nishiyu24/24u/blob/main/image/character/walk/kid-walk-${toRight ? "right" : "left"}-${"00" + Math.floor(walkingCount / walkRange)}.png?raw=true`;
       ctx.drawImage(image, x - 12, y - 14, 32, 32);
     }
 
