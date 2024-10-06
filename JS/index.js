@@ -1,3 +1,6 @@
+///////////////////////入力処理//////////////////////////////
+
+
 // キーボードの入力状態を記録する配列の定義
 var input_key_buffer = new Array();
 
@@ -59,6 +62,8 @@ function handleKeyup(e) {
   }
 }
 
+///////////////////////変数群//////////////////////////////
+
 // canvas要素の取得
 const canvas = document.getElementById("maincanvas");
 const ctx = canvas.getContext("2d");
@@ -105,8 +110,8 @@ var x = 50;
 var y = 700;
 var characterSizeX = 10;
 var characterSizeY = 17;
-var RestartX = 50;
-var RestartY = 700;
+var RestartX = 150;
+var RestartY = 100;
 var under_ground = 800;
 var blocksize = 32;
 
@@ -168,7 +173,7 @@ const blocks = [
   { x: blocksize * 0, y: under_ground - blocksize * 24, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
   { x: blocksize * 1, y: under_ground - blocksize * 24, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
   { x: blocksize * 3, y: under_ground - blocksize * 13, w: blocksize, h: blocksize, r: 4, btype: "needle"},
-  { x: blocksize * 3, y: under_ground - blocksize * 20, w: blocksize, h: blocksize, r: 4, btype: "needle"},
+  { x: blocksize * 3, y: under_ground - blocksize * 19, w: blocksize, h: blocksize, r: 4, btype: "needle"},
 
 
   { x: blocksize * 4, y: under_ground - blocksize * 8, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
@@ -316,6 +321,26 @@ const blocks = [
   { x: blocksize * 14, y: under_ground - blocksize * 18, w: blocksize, h: blocksize, r: 1, btype: "needle"},
   { x: blocksize * 15, y: under_ground - blocksize * 18, w: blocksize, h: blocksize, r: 1, btype: "needle"},
   { x: blocksize * 16, y: under_ground - blocksize * 18, w: blocksize, h: blocksize, r: 1, btype: "needle"},
+
+  { x: blocksize * 6, y: under_ground - blocksize * 23, w: blocksize, h: blocksize, r: 3, btype: "needle"},
+  { x: blocksize * 7, y: under_ground - blocksize * 23, w: blocksize, h: blocksize, r: 3, btype: "needle"},
+  { x: blocksize * 8, y: under_ground - blocksize * 23, w: blocksize, h: blocksize, r: 3, btype: "needle"},
+  { x: blocksize * 9, y: under_ground - blocksize * 23, w: blocksize, h: blocksize, r: 3, btype: "needle"},
+  { x: blocksize * 10, y: under_ground - blocksize * 23, w: blocksize, h: blocksize, r: 3, btype: "needle"},
+  { x: blocksize * 11, y: under_ground - blocksize * 23, w: blocksize, h: blocksize, r: 3, btype: "needle"},
+  { x: blocksize * 12, y: under_ground - blocksize * 23, w: blocksize, h: blocksize, r: 3, btype: "needle"},
+  { x: blocksize * 13, y: under_ground - blocksize * 23, w: blocksize, h: blocksize, r: 3, btype: "needle"},
+  { x: blocksize * 14, y: under_ground - blocksize * 23, w: blocksize, h: blocksize, r: 3, btype: "needle"},
+  { x: blocksize * 15, y: under_ground - blocksize * 23, w: blocksize, h: blocksize, r: 3, btype: "needle"},
+  { x: blocksize * 16, y: under_ground - blocksize * 23, w: blocksize, h: blocksize, r: 3, btype: "needle"},
+
+  { x: blocksize * 7, y: under_ground - blocksize * 20, w: blocksize/4, h: blocksize/4, r: 1, btype: "step"},
+  { x: blocksize * 10, y: under_ground - blocksize * 20, w: blocksize/4, h: blocksize/4, r: 1, btype: "step"},
+  { x: blocksize * 13, y: under_ground - blocksize * 20, w: blocksize/4, h: blocksize/4, r: 1, btype: "step"},
+  { x: blocksize * 16, y: under_ground - blocksize * 20, w: blocksize/4, h: blocksize/4, r: 1, btype: "step"},
+  { x: blocksize * 19, y: under_ground - blocksize * 20, w: blocksize/4, h: blocksize/4, r: 1, btype: "step"},
+  { x: blocksize * 22, y: under_ground - blocksize * 20, w: blocksize/4, h: blocksize/4, r: 1, btype: "step"},
+
   { x: blocksize * 17, y: under_ground - blocksize * 18, w: blocksize, h: blocksize, r: 1, btype: "needle"},
   { x: blocksize * 18, y: under_ground - blocksize * 18, w: blocksize, h: blocksize, r: 1, btype: "needle"},
   { x: blocksize * 19, y: under_ground - blocksize * 18, w: blocksize, h: blocksize, r: 1, btype: "needle"},
@@ -324,10 +349,10 @@ const blocks = [
   { x: blocksize * 22, y: under_ground - blocksize * 18, w: blocksize, h: blocksize, r: 1, btype: "needle"},
   { x: blocksize * 23, y: under_ground - blocksize * 18, w: blocksize, h: blocksize, r: 1, btype: "needle"},
 
-  { x: blocksize * 4, y: under_ground - blocksize * 23, w: blocksize, h: blocksize, r: 1, btype: "save"},
+  { x: blocksize * 4, y: under_ground - blocksize * 22, w: blocksize, h: blocksize, r: 1, btype: "save"},
+  { x: blocksize * 4, y: under_ground - blocksize * 24, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
   { x: blocksize * 2, y: under_ground - blocksize * 24, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
   { x: blocksize * 3, y: under_ground - blocksize * 24, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 4, y: under_ground - blocksize * 24, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
   { x: blocksize * 5, y: under_ground - blocksize * 24, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
   { x: blocksize * 6, y: under_ground - blocksize * 24, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
   { x: blocksize * 7, y: under_ground - blocksize * 24, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
@@ -360,6 +385,8 @@ drawBackground(blocks);
 // ロード時に画面描画の処理が実行されるようにする
 window.addEventListener("load", update);
 
+///////////////////////背景描画//////////////////////////////
+
 function loadImage(src) {
   return new Promise((resolve, reject) => {
     const img = new Image();
@@ -377,12 +404,16 @@ function loadImage(src) {
 async function drawBackground(structs) {
   const promises = structs.map(struct => {
     let src;
+    // 画像を使用する場合
     if (struct.btype == 'Nground') {
       src = './image/ground/Grasslands.png';
     } else if (struct.btype == 'needle') {
       src = `./image/ground/Needle-00${struct.r}.png`;
     } else if (struct.btype == 'save') {
       src = './image/ground/Save1.png'; // 新しいソース
+    } else if (struct.btype == 'step') {
+      // 画像を使わない場合の分岐: ここでPromiseを返して描画後にnullで処理する
+      return Promise.resolve(null);
     } else {
       console.error(`Unknown btype: ${struct.btype}`);
       return Promise.resolve(null); // 無効なタイプの場合はnullを返す
@@ -393,18 +424,25 @@ async function drawBackground(structs) {
   const images = await Promise.all(promises);
 
   images.forEach((image, index) => {
+    const struct = structs[index];
     if (image) {
-      offscreenCtx.drawImage(image, structs[index].x, structs[index].y, structs[index].w, structs[index].h);
+      // 画像を使って描画
+      offscreenCtx.drawImage(image, struct.x, struct.y, struct.w, struct.h);
+    } else if (struct.btype == 'step') {
+      // fillRectを使って矩形を描画
+      offscreenCtx.fillStyle = struct.color || 'black'; // 色の指定がない場合は黒
+      const Stepsize = 8; 
+      offscreenCtx.fillRect(struct.x,struct.y, Stepsize, Stepsize);
     }
   });
 }
+
 
 
 ///////////////////////////////////////////////////////////
 /*/////////////////  メイン繰り返し部分  /////////////////*/
 ///////////////////////////////////////////////////////////
 function update() {
-  let debug = document.getElementById("test");
   // 現在の時間を取得
   let now = performance.now();
   // 経過時間を計算
@@ -421,6 +459,8 @@ function update() {
 
     if(now - GimmickTime < GimmickEnd){
       ctx.drawImage(GimmickscreenCanvas, 0, 0);
+    }else{
+      GimmickscreenCtx.clearRect(0, 0, 960, 800);
     }
 
 
@@ -464,14 +504,18 @@ function update() {
       if (isJump) {
         updatedY = y + vy;
 
-        if(vy < 10){
+        if(vy < 8){
           vy += 0.4;
         }
 
         const blockTargetIsOn = getBlockTargetIsOn(x, y, updatedX, updatedY);
         if (blockTargetIsOn !== null) {
+          let debug = document.getElementById("test");
+          debug.innerHTML = blockTargetIsOn.btype;
           if(blockTargetIsOn.btype == "needle"){
             getNeedleMarkPoint(updatedX, updatedY, blockTargetIsOn.x, blockTargetIsOn.y, blockTargetIsOn.h, blockTargetIsOn.w, blockTargetIsOn.r);
+          }else if (blockTargetIsOn.btype == "step" || blockTargetIsOn.btype == "save"){
+
           }else{
             updatedY = blockTargetIsOn.y - characterSizeY;
             isJump = false; // ジャンプ状態を解除
@@ -480,11 +524,34 @@ function update() {
           }
 
         }
+
+
+        const blockTargetIsTouch = getBlockTargetIsTouch(updatedX, updatedY,characterSizeX,characterSizeY);
+        if (blockTargetIsTouch) {
+          if(blockTargetIsTouch.btype == "Nground"){
+            const result = rollBackPosition(blockTargetIsTouch.x, blockTargetIsTouch.y, blockTargetIsTouch.h, blockTargetIsTouch.w, x, y, updatedX, updatedY);
+            updatedX = result.chatacter_updatedX;
+            updatedY = result.chatacter_updatedY;
+          }else if(blockTargetIsTouch.btype == "needle"){
+            getNeedleMarkPoint(updatedX, updatedY, blockTargetIsTouch.x, blockTargetIsTouch.y, blockTargetIsTouch.h, blockTargetIsTouch.w, blockTargetIsTouch.r);
+          }else if(blockTargetIsTouch.btype == "save"){
+            RestartX = x;
+            RestartY = y;
+            SetGimmicks(blockTargetIsTouch,1);
+          }else if(blockTargetIsTouch.btype == "step"){
+            CanSecondJump = true;
+          }
+  
+        }
+
+        
       } else {
-        if (getBlockTargetIsOn(x, y, updatedX, updatedY) == null || getBlockTargetIsOn(x, y, updatedX, updatedY).btype == "needle") {
+        if (getBlockTargetIsOn(x, y, updatedX, updatedY) == null) {
           isJump = true;
           CanSecondJump = true;
           vy = 0;
+        }else if(getBlockTargetIsOn(x, y, updatedX, updatedY).btype == "needle"){
+          getNeedleMarkPoint(updatedX, updatedY, blockTargetIsTouch.x, blockTargetIsTouch.y, blockTargetIsTouch.h, blockTargetIsTouch.w, blockTargetIsTouch.r);
         }
       }
 
@@ -500,8 +567,13 @@ function update() {
           RestartX = x;
           RestartY = y;
           SetGimmicks(blockTargetIsTouch,1);
+        }else if(blockTargetIsTouch.btype == "step"){
+          CanSecondJump = true;
         }
+
+      }else{
       }
+
 
       if (y > 820 || 14 > y) {
         isGameOver = true;
@@ -513,7 +585,6 @@ function update() {
       }
     }
 
-    //debug.innerHTML = `${updatedX} : ${updatedY}`;
 
     if (input_key_buffer[82]) {
       isJump = false;
@@ -595,9 +666,8 @@ function update() {
   }
 }
 
-///////////////////////////////////////////////////////////
-/*//////////////  メイン繰り返し部分終わり  ///////////////*/
-///////////////////////////////////////////////////////////
+
+/////////////////////////////接触ブロックの判定/////////////////////////////////
 
 // 変更前後のxy座標を受け取って、ブロックの上に存在していればそのブロックの情報を返す
 function getBlockTargetIsOn(chatacter_x, chatacter_y, chatacter_updatedX, chatacter_updatedY) {
@@ -611,6 +681,8 @@ function getBlockTargetIsOn(chatacter_x, chatacter_y, chatacter_updatedX, chatac
   return null;
 }
 
+
+
 // 変更前後のxy座標を受け取って、ブロックに接触していればそのブロックの情報を返す
 function getBlockTargetIsTouch(chatacter_updatedX, chatacter_updatedY,SizeX,SizeY) {
   for (const block of blocks) {
@@ -623,67 +695,100 @@ function getBlockTargetIsTouch(chatacter_updatedX, chatacter_updatedY,SizeX,Size
   return null;
 }
 
-//針の当たり判定を検証し、接触していればゲームオーバーとする
-function getNeedleMarkPoint(chatacter_updatedX, chatacter_updatedY, blockx, blocky, blockh, blockw, blockr) {
-  
-  var points = [];
-  var safeMode = 0;
-  
-  if(blockr ==1){
-    p1 = [blockx, blocky + blockh];
-    p2 = [blockx + blockw, blocky + blockh];
-    p3 = [blockx + blockw/2 + 0.5, blocky + safeMode];
-  }else if(blockr == 2){
-    p1 = [blockx, blocky];
-    p2 = [blockx, blocky + blockh];
-    p3 = [blockx + blockw - safeMode, blocky + blockh/2 + 0.5];
-  }else if(blockr == 3){
-    p1 = [blockx, blocky];
-    p2 = [blockx + blockw, blocky];
-    p3 = [blockx + blockw/2 + 0.5, blocky + blockh - safeMode];
-  }else if(blockr == 4){
-    p1 = [blockx + blockw, blocky];
-    p2 = [blockx + blockw, blocky + blockh];
-    p3 = [blockx + safeMode, blocky + blockh/2 + 0.5];
-  }
-  points.push(p1);
-  points.push(p2);
-  points.push(p3);
-  points.push(calcPotionArray(p1,p2));
-  points.push(calcPotionArray(p1,p3));
-  points.push(calcPotionArray(p2,p3));
+/////////////////////////棘の接触判定/////////////////////////////////
 
-  for (const point of points) {
-    if(isPointInRect(point[0],point[1],chatacter_updatedX, chatacter_updatedY)){
-      isGameOver = true;
-      break;
+// 2つの点の中点を計算する関数
+function calcMidPoint(p1, p2) {
+  return [(p1[0] + p2[0]) / 2, (p1[1] + p2[1]) / 2];
+}
+
+// 線分が交差しているかどうかを判定する関数
+function isLineIntersect(p1, p2, q1, q2) {
+  const orientation = (p, q, r) => {
+    const val = (q[1] - p[1]) * (r[0] - q[0]) - (q[0] - p[0]) * (r[1] - q[1]);
+    if (val === 0) return 0; // collinear
+    return (val > 0) ? 1 : 2; // clock or counter-clockwise
+  };
+
+  const o1 = orientation(p1, p2, q1);
+  const o2 = orientation(p1, p2, q2);
+  const o3 = orientation(q1, q2, p1);
+  const o4 = orientation(q1, q2, p2);
+
+  // 一般的なケース
+  if (o1 !== o2 && o3 !== o4) return true;
+
+  // 特殊ケース（線分がコリニアの場合の処理は省略）
+  return false;
+}
+
+// 矩形の各辺を取得する関数
+function getRectangleEdges(rectX, rectY, rectW, rectH) {
+  return [
+    [[rectX, rectY], [rectX + rectW, rectY]], // 上辺
+    [[rectX + rectW, rectY], [rectX + rectW, rectY + rectH]], // 右辺
+    [[rectX + rectW, rectY + rectH], [rectX, rectY + rectH]], // 下辺
+    [[rectX, rectY + rectH], [rectX, rectY]] // 左辺
+  ];
+}
+
+// 針とキャラクターの接触判定を行う関数
+function getNeedleMarkPoint(chatacter_updatedX, chatacter_updatedY, blockx, blocky, blockh, blockw, blockr) {
+  // 針の向きに応じた三角形の頂点を取得
+  const [p1, p2, p3] = calculateNeedlePoints(blockx, blocky, blockh, blockw, blockr);
+  
+  // 矩形の各辺を取得
+  const rectangleEdges = getRectangleEdges(chatacter_updatedX, chatacter_updatedY, characterSizeX, characterSizeY);
+  
+  // 三角形の辺を取得
+  const triangleEdges = [
+    [p1, p2],
+    [p2, p3],
+    [p3, p1]
+  ];
+
+  // 各三角形の辺と矩形の辺が交差しているかチェック
+  for (const triangleEdge of triangleEdges) {
+    for (const rectangleEdge of rectangleEdges) {
+      if (isLineIntersect(triangleEdge[0], triangleEdge[1], rectangleEdge[0], rectangleEdge[1])) {
+        // 衝突が確認された場合はゲームオーバー
+        isGameOver = true;
+        return; // 衝突が見つかったら早期に戻る
+      }
     }
   }
 }
 
-//針の中点検出用
-function calcPotionArray(array1,array2){
-  // 1. 2つの配列を足す
-  const summedArray = array1.map((value, index) => value + array2[index]);
-  // 2. 合計した配列をnumで割る
-  return summedArray.map(value => value / 2);
+// 針の向きに応じた点の計算を行う関数
+function calculateNeedlePoints(blockx, blocky, blockh, blockw, blockr) {
+  let p1, p2, p3;
+
+  // 針の向きに応じて三角形の頂点を設定
+  if (blockr == 1) {
+    p1 = [blockx, blocky + blockh - 5]; // 右下
+    p2 = [blockx + blockw, blocky + blockh - 5]; // 左下
+    p3 = [blockx + blockw / 2, blocky]; // 上の中心
+  } else if (blockr == 2) {
+    p1 = [blockx + 5, blocky]; // 左上
+    p2 = [blockx + 5, blocky + blockh]; // 左下
+    p3 = [blockx + blockw, blocky + blockh / 2]; // 右の中心
+  } else if (blockr == 3) {
+    p1 = [blockx, blocky + 5]; // 左上
+    p2 = [blockx + blockw, blocky + 5]; // 右上
+    p3 = [blockx + blockw / 2, blocky + blockh]; // 下の中心
+  } else if (blockr == 4) {
+    p1 = [blockx + blockw - 5, blocky]; // 右上
+    p2 = [blockx + blockw - 5, blocky + blockh]; // 右下
+    p3 = [blockx, blocky + blockh / 2]; // 左の中心
+  }
+
+  return [p1, p2, p3]; // 計算した点を返す
 }
 
-//針の特徴点がキャラクターの当たり判定に接触しているか
-function isPointInRect(chatacter_x,chatacter_y,chatacter_updatedX, chatacter_updatedY) {
-  // 矩形の情報
-  const rectLeft = chatacter_updatedX;
-  const rectRight = chatacter_updatedX + characterSizeX;
-  const rectTop = chatacter_updatedY;
-  const rectBottom = chatacter_updatedY + characterSizeY;
+///////////////////////壁のすり抜け防止//////////////////////////////
 
-  // 座標が矩形内にあるかどうかを確認
-  return chatacter_x >= rectLeft && chatacter_x <= rectRight && chatacter_y >= rectTop && chatacter_y <= rectBottom;
-}
-
-//地面のめり込み防止
 function rollBackPosition(blockx, blocky, blockh, blockw, chatacter_x, chatacter_y, chatacter_updatedX, chatacter_updatedY) {
-  // キャラクターの上下左右に関する判定を行う
+  // キャラクターのサイズを定義
   const characterBottom = chatacter_y + characterSizeY;
   const characterTop = chatacter_y;
   const characterLeft = chatacter_x;
@@ -694,25 +799,30 @@ function rollBackPosition(blockx, blocky, blockh, blockw, chatacter_x, chatacter
   const updatedLeft = chatacter_updatedX;
   const updatedRight = chatacter_updatedX + characterSizeX;
 
-  // 上下の衝突判定
-  if (characterBottom <= blocky && updatedBottom > blocky) {
-    chatacter_updatedY = blocky - characterSizeY;  // ブロックの上にキャラクターを配置
-  } else if (characterTop >= blocky + blockh && updatedTop < blocky + blockh) {
-    chatacter_updatedY = blocky + blockh;  // ブロックの下にキャラクターを配置
-    vy = 0;
-  }
-
   // 左右の衝突判定
   if (characterRight <= blockx && updatedRight > blockx) {
     chatacter_updatedX = blockx - characterSizeX;  // ブロックの左にキャラクターを配置
     walkingCount = 0;
+    return { chatacter_updatedX: chatacter_updatedX, chatacter_updatedY: chatacter_updatedY };
   } else if (characterLeft >= blockx + blockw && updatedLeft < blockx + blockw) {
     chatacter_updatedX = blockx + blockw;  // ブロックの右にキャラクターを配置
     walkingCount = 0;
+    return { chatacter_updatedX: chatacter_updatedX, chatacter_updatedY: chatacter_updatedY };
   }
 
-  return { chatacter_updatedX: chatacter_updatedX, chatacter_updatedY: chatacter_updatedY };
+  // 上下の衝突判定
+  if (characterBottom <= blocky && updatedBottom > blocky) {
+    chatacter_updatedY = blocky - characterSizeY;  // ブロックの上にキャラクターを配置
+    return { chatacter_updatedX: chatacter_updatedX, chatacter_updatedY: chatacter_updatedY };
+  } else if (characterTop >= blocky + blockh && updatedTop < blocky + blockh) {
+    chatacter_updatedY = blocky + blockh;  // ブロックの下にキャラクターを配置
+    vy = 0;
+    return { chatacter_updatedX: chatacter_updatedX, chatacter_updatedY: chatacter_updatedY };
+  }
 }
+
+
+///////////////////////ギミックのアニメーション設定用//////////////////////////////
 
 function SetGimmicks(Gimmickblock,GimmickAliveTime){
   GimmickTime = performance.now();
