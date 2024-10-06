@@ -16,15 +16,13 @@ function handleKeydown(e) {
         Bullet.bulletY = y + 5;
         Bullet.Isright = toRight;
         Bullet.aliveTime = performance.now();;
-        shotCount += 1;
-        if(shotCount == 1){
+        if(shotCount == 0){
+          fireSE1.load();
           fireSE1.play();
-        }else if(shotCount == 2){
+          shotCount = 1;
+        }else if(shotCount == 1){
+          fireSE2.load();
           fireSE2.play();
-        }else if(shotCount == 3){
-          fireSE3.play();
-        }else if(shotCount == 4){
-          fireSE4.play();
           shotCount = 0;
         }
         break;
@@ -34,10 +32,12 @@ function handleKeydown(e) {
 
   // ジャンプボタン(38:上矢印, 32:スペース)が押された時
   if ((e.keyCode === 38 || e.keyCode === 32) && !isJump) {
+    jump1SE.load();
     jump1SE.play();
     isJump = true;  // ジャンプ開始フラグ
     vy = -10;  // 初期ジャンプ速度
   }else if((e.keyCode === 38 || e.keyCode === 32) && isJump && CanSecondJump && Jumping){
+    jump2SE.load();
     jump2SE.play();
     Jumping = false;
     CanSecondJump = false;  // 2段ジャンプ停止フラグ
@@ -53,8 +53,8 @@ function handleKeyup(e) {
   // ジャンプボタンが離された時
   if ((e.keyCode === 38 || e.keyCode === 32) && isJump) {
     Jumping = true;
-    if(vy <= -1.6){
-      vy = -1.6;
+    if(vy <= -0.6){
+      vy = -0.6;
     }
   }
 }
@@ -62,7 +62,7 @@ function handleKeyup(e) {
 // canvas要素の取得
 const canvas = document.getElementById("maincanvas");
 const ctx = canvas.getContext("2d");
-
+//背景用offcanvas
 const offscreenCanvas = document.createElement('canvas');
 offscreenCanvas.width = canvas.width;
 offscreenCanvas.height = canvas.height;
@@ -73,11 +73,9 @@ const deadBGM = new Audio('./sound/dead.wav');
 // ジャンプSEの読み込み
 const jump1SE = new Audio('./sound/jump1.wav');
 const jump2SE = new Audio('./sound/jump2.wav');
-// ジャンプSEの読み込み
+// 射撃SEの読み込み
 const fireSE1 = new Audio('./sound/fire.wav');
 const fireSE2 = new Audio('./sound/fire.wav');
-const fireSE3 = new Audio('./sound/fire.wav');
-const fireSE4 = new Audio('./sound/fire.wav');
 
 let frameCount = 0;
 let fps = 0;
@@ -106,6 +104,7 @@ var CanSecondJump = true;
 // ゲームオーバーか否かのフラグ値
 var isGameOver = false;
 
+//射撃用構造体
 var shotCount = 0;
 var Bulletlocations = [
   {valid : false, bulletX : 0, bulletY : 0, Isright : true, aliveTime : 0},
@@ -122,6 +121,7 @@ var isFall = false
 // 右向きか否か
 var toRight = true;
 
+//ステージ配置用構造体配列
 const blocks = [
   { x: blocksize * 0, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "static"},
   { x: blocksize * 1, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "static"},
@@ -138,6 +138,8 @@ const blocks = [
   { x: blocksize * 8, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "static"},
   { x: blocksize * 9, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "static"},
   { x: blocksize * 10, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "static"},
+  { x: blocksize * 11, y: under_ground - blocksize * 4, w: blocksize, h: blocksize, r: 3, btype: "needle"},
+  { x: blocksize * 11, y: under_ground - blocksize * 2, w: blocksize, h: blocksize, r: 1, btype: "needle"},
   { x: blocksize * 11, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "static"},
   { x: blocksize * 12, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "static"},
   { x: blocksize * 13, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "static"},
@@ -156,8 +158,39 @@ const blocks = [
   { x: blocksize * 23, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "static"},
   { x: blocksize * 24, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "static"},
   { x: blocksize * 25, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "static"},
+  { x: blocksize * 0, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "static"},
+  { x: blocksize * 1, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "static"},
+  { x: blocksize * 2, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "static"},
+  { x: blocksize * 3, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "static"},
+  { x: blocksize * 4, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "static"},
+  { x: blocksize * 2, y: under_ground - blocksize * 3, w: blocksize, h: blocksize, r: 1, btype: "static"},
+  { x: blocksize * 3, y: under_ground - blocksize * 3, w: blocksize, h: blocksize, r: 1, btype: "static"},
+  { x: blocksize * 4, y: under_ground - blocksize * 3, w: blocksize, h: blocksize, r: 1, btype: "static"},
+  { x: blocksize * 4, y: under_ground - blocksize * 5, w: blocksize, h: blocksize, r: 1, btype: "needle"},
+  { x: blocksize * 5, y: under_ground - blocksize * 5, w: blocksize, h: blocksize, r: 1, btype: "static"},
+  { x: blocksize * 6, y: under_ground - blocksize * 5, w: blocksize, h: blocksize, r: 1, btype: "static"},
+  { x: blocksize * 7, y: under_ground - blocksize * 5, w: blocksize, h: blocksize, r: 1, btype: "static"},
+  { x: blocksize * 8, y: under_ground - blocksize * 5, w: blocksize, h: blocksize, r: 1, btype: "static"},
+  { x: blocksize * 9, y: under_ground - blocksize * 5, w: blocksize, h: blocksize, r: 1, btype: "static"},
+  { x: blocksize * 10, y: under_ground - blocksize * 5, w: blocksize, h: blocksize, r: 1, btype: "static"},
+  { x: blocksize * 11, y: under_ground - blocksize * 5, w: blocksize, h: blocksize, r: 1, btype: "static"},
+  { x: blocksize * 12, y: under_ground - blocksize * 5, w: blocksize, h: blocksize, r: 1, btype: "static"},
+  { x: blocksize * 13, y: under_ground - blocksize * 5, w: blocksize, h: blocksize, r: 1, btype: "static"},
+  { x: blocksize * 14, y: under_ground - blocksize * 5, w: blocksize, h: blocksize, r: 1, btype: "static"},
+  { x: blocksize * 15, y: under_ground - blocksize * 5, w: blocksize, h: blocksize, r: 1, btype: "static"},
+  { x: blocksize * 16, y: under_ground - blocksize * 5, w: blocksize, h: blocksize, r: 1, btype: "static"},
+  { x: blocksize * 17, y: under_ground - blocksize * 5, w: blocksize, h: blocksize, r: 1, btype: "static"},
+  { x: blocksize * 18, y: under_ground - blocksize * 5, w: blocksize, h: blocksize, r: 1, btype: "static"},
+  { x: blocksize * 19, y: under_ground - blocksize * 5, w: blocksize, h: blocksize, r: 1, btype: "static"},
+  { x: blocksize * 20, y: under_ground - blocksize * 5, w: blocksize, h: blocksize, r: 1, btype: "static"},
+  { x: blocksize * 21, y: under_ground - blocksize * 5, w: blocksize, h: blocksize, r: 1, btype: "static"},
+  { x: blocksize * 22, y: under_ground - blocksize * 5, w: blocksize, h: blocksize, r: 1, btype: "static"},
+  { x: blocksize * 23, y: under_ground - blocksize * 5, w: blocksize, h: blocksize, r: 1, btype: "static"},
+  { x: blocksize * 24, y: under_ground - blocksize * 5, w: blocksize, h: blocksize, r: 1, btype: "static"},
+  { x: blocksize * 25, y: under_ground - blocksize * 5, w: blocksize, h: blocksize, r: 1, btype: "static"},
 
 ];
+
 
 // ロード時に画面描画の処理が実行されるようにする
 window.addEventListener("load", update);
@@ -172,20 +205,20 @@ function loadImage(src, callback) {
   });
 }
 
-async function drawBackground() {
-  const promises = blocks.map(block => {
-    const src = block.btype === 'static' ? './image/ground/Grasslands.png' : `./image/ground/Needle-00${block.r}.png`;
+async function drawBackground(structs) {
+  const promises = structs.map(struct => {
+    const src = struct.btype === 'static' ? './image/ground/Grasslands.png' : `./image/ground/Needle-00${struct.r}.png`;
     return loadImage(src);
   });
 
   const images = await Promise.all(promises);
 
   images.forEach((image, index) => {
-    offscreenCtx.drawImage(image, blocks[index].x, blocks[index].y, blocks[index].w, blocks[index].h);
+    offscreenCtx.drawImage(image, structs[index].x, structs[index].y, structs[index].w, structs[index].h);
   });
 }
 
-drawBackground();
+drawBackground(blocks);
 
 ///////////////////////////////////////////////////////////
 /*/////////////////  メイン繰り返し部分  /////////////////*/
@@ -343,7 +376,7 @@ function update() {
     animationFPS.innerHTML = fps;
 
     // fpsが55以下なら赤文字、それ以上なら黒文字に変更
-    if (fps <= 55) {
+    if (fps <= targetFPS-5) {
       animationFPS.style.color = 'red';
     } else {
       animationFPS.style.color = 'black';
@@ -383,10 +416,11 @@ function getBlockTargetIsTouch(chatacter_updatedX, chatacter_updatedY,SizeX,Size
   return null;
 }
 
+//針の当たり判定を検証し、接触していればゲームオーバーとする
 function getNeedleMarkPoint(chatacter_updatedX, chatacter_updatedY, blockx, blocky, blockh, blockw, blockr) {
   
   var points = [];
-  var safeMode = 5;
+  var safeMode = 0;
   
   if(blockr ==1){
     p1 = [blockx, blocky + blockh];
@@ -420,6 +454,7 @@ function getNeedleMarkPoint(chatacter_updatedX, chatacter_updatedY, blockx, bloc
   }
 }
 
+//針の中点検出用
 function calcPotionArray(array1,array2){
   // 1. 2つの配列を足す
   const summedArray = array1.map((value, index) => value + array2[index]);
@@ -427,6 +462,7 @@ function calcPotionArray(array1,array2){
   return summedArray.map(value => value / 2);
 }
 
+//針の特徴点がキャラクターの当たり判定に接触しているか
 function isPointInRect(chatacter_x,chatacter_y,chatacter_updatedX, chatacter_updatedY) {
   // 矩形の情報
   const rectLeft = chatacter_updatedX;
@@ -438,6 +474,7 @@ function isPointInRect(chatacter_x,chatacter_y,chatacter_updatedX, chatacter_upd
   return chatacter_x >= rectLeft && chatacter_x <= rectRight && chatacter_y >= rectTop && chatacter_y <= rectBottom;
 }
 
+//地面のめり込み防止
 function rollBackPosition(blockx, blocky, blockh, blockw, chatacter_x, chatacter_y, chatacter_updatedX, chatacter_updatedY) {
   // キャラクターの上下左右に関する判定を行う
   const characterBottom = chatacter_y + characterSizeY;
