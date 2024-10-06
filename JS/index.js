@@ -201,8 +201,6 @@ const blocks = [
   { x: blocksize * 8, y: under_ground - blocksize * 4, w: blocksize, h: blocksize, r: 3, btype: "needle"},
   { x: blocksize * 8, y: under_ground - blocksize * 2, w: blocksize, h: blocksize, r: 1, btype: "needle"},
 
-  { x: blocksize * 7, y: under_ground - blocksize * 23, w: blocksize, h: blocksize, r: 1, btype: "needle"},
-  { x: blocksize * 7, y: under_ground - blocksize * 21, w: blocksize, h: blocksize, r: 3, btype: "needle"},
 
   { x: blocksize * 11, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
   { x: blocksize * 12, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
@@ -212,17 +210,10 @@ const blocks = [
   { x: blocksize * 14, y: under_ground - blocksize * 4, w: blocksize, h: blocksize, r: 3, btype: "needle"},
   { x: blocksize * 15, y: under_ground - blocksize * 2, w: blocksize, h: blocksize, r: 1, btype: "needle"},
 
-  { x: blocksize * 13, y: under_ground - blocksize * 23, w: blocksize, h: blocksize, r: 1, btype: "needle"},
-  { x: blocksize * 14, y: under_ground - blocksize * 21, w: blocksize, h: blocksize, r: 3, btype: "needle"},
-  { x: blocksize * 15, y: under_ground - blocksize * 23, w: blocksize, h: blocksize, r: 1, btype: "needle"},
-
   { x: blocksize * 20.5, y: under_ground - blocksize * 4, w: blocksize, h: blocksize, r: 3, btype: "needle"},
   { x: blocksize * 21, y: under_ground - blocksize * 2, w: blocksize, h: blocksize, r: 1, btype: "needle"},
   { x: blocksize * 21.5, y: under_ground - blocksize * 4, w: blocksize, h: blocksize, r: 3, btype: "needle"},
 
-  { x: blocksize * 20.5, y: under_ground - blocksize * 23, w: blocksize, h: blocksize, r: 3, btype: "needle"},
-  { x: blocksize * 21, y: under_ground - blocksize * 21, w: blocksize, h: blocksize, r: 1, btype: "needle"},
-  { x: blocksize * 21.5, y: under_ground - blocksize * 23, w: blocksize, h: blocksize, r: 3, btype: "needle"},
 
   { x: blocksize * 15, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
   { x: blocksize * 16, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
@@ -291,29 +282,47 @@ const blocks = [
   { x: blocksize * 24, y: under_ground - blocksize * 20, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
 
 
-  { x: blocksize * 5, y: under_ground - blocksize * 23, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 4, y: under_ground - blocksize * 20, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 5, y: under_ground - blocksize * 20, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 6, y: under_ground - blocksize * 20, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 7, y: under_ground - blocksize * 20, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 8, y: under_ground - blocksize * 20, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 9, y: under_ground - blocksize * 20, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 10, y: under_ground - blocksize * 20, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 11, y: under_ground - blocksize * 20, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 12, y: under_ground - blocksize * 20, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 13, y: under_ground - blocksize * 20, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 14, y: under_ground - blocksize * 20, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 15, y: under_ground - blocksize * 20, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 16, y: under_ground - blocksize * 20, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 17, y: under_ground - blocksize * 20, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 18, y: under_ground - blocksize * 20, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 19, y: under_ground - blocksize * 20, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 20, y: under_ground - blocksize * 20, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 21, y: under_ground - blocksize * 20, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 22, y: under_ground - blocksize * 20, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 23, y: under_ground - blocksize * 20, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 24, y: under_ground - blocksize * 20, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 25, y: under_ground - blocksize * 20, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
+  { x: blocksize * 5, y: under_ground - blocksize * 17, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
+  { x: blocksize * 6, y: under_ground - blocksize * 17, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
+  { x: blocksize * 7, y: under_ground - blocksize * 17, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
+  { x: blocksize * 8, y: under_ground - blocksize * 17, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
+  { x: blocksize * 9, y: under_ground - blocksize * 17, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
+  { x: blocksize * 10, y: under_ground - blocksize * 17, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
+  { x: blocksize * 11, y: under_ground - blocksize * 17, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
+  { x: blocksize * 12, y: under_ground - blocksize * 17, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
+  { x: blocksize * 13, y: under_ground - blocksize * 17, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
+  { x: blocksize * 14, y: under_ground - blocksize * 17, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
+  { x: blocksize * 15, y: under_ground - blocksize * 17, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
+  { x: blocksize * 16, y: under_ground - blocksize * 17, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
+  { x: blocksize * 17, y: under_ground - blocksize * 17, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
+  { x: blocksize * 18, y: under_ground - blocksize * 17, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
+  { x: blocksize * 19, y: under_ground - blocksize * 17, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
+  { x: blocksize * 20, y: under_ground - blocksize * 17, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
+  { x: blocksize * 21, y: under_ground - blocksize * 17, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
+  { x: blocksize * 22, y: under_ground - blocksize * 17, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
+  { x: blocksize * 23, y: under_ground - blocksize * 17, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
+  { x: blocksize * 24, y: under_ground - blocksize * 17, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
+  { x: blocksize * 25, y: under_ground - blocksize * 17, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
+
+  { x: blocksize * 5, y: under_ground - blocksize * 18, w: blocksize, h: blocksize, r: 1, btype: "needle"},
+  { x: blocksize * 6, y: under_ground - blocksize * 18, w: blocksize, h: blocksize, r: 1, btype: "needle"},
+  { x: blocksize * 7, y: under_ground - blocksize * 18, w: blocksize, h: blocksize, r: 1, btype: "needle"},
+  { x: blocksize * 8, y: under_ground - blocksize * 18, w: blocksize, h: blocksize, r: 1, btype: "needle"},
+  { x: blocksize * 9, y: under_ground - blocksize * 18, w: blocksize, h: blocksize, r: 1, btype: "needle"},
+  { x: blocksize * 10, y: under_ground - blocksize * 18, w: blocksize, h: blocksize, r: 1, btype: "needle"},
+  { x: blocksize * 11, y: under_ground - blocksize * 18, w: blocksize, h: blocksize, r: 1, btype: "needle"},
+  { x: blocksize * 12, y: under_ground - blocksize * 18, w: blocksize, h: blocksize, r: 1, btype: "needle"},
+  { x: blocksize * 13, y: under_ground - blocksize * 18, w: blocksize, h: blocksize, r: 1, btype: "needle"},
+  { x: blocksize * 14, y: under_ground - blocksize * 18, w: blocksize, h: blocksize, r: 1, btype: "needle"},
+  { x: blocksize * 15, y: under_ground - blocksize * 18, w: blocksize, h: blocksize, r: 1, btype: "needle"},
+  { x: blocksize * 16, y: under_ground - blocksize * 18, w: blocksize, h: blocksize, r: 1, btype: "needle"},
+  { x: blocksize * 17, y: under_ground - blocksize * 18, w: blocksize, h: blocksize, r: 1, btype: "needle"},
+  { x: blocksize * 18, y: under_ground - blocksize * 18, w: blocksize, h: blocksize, r: 1, btype: "needle"},
+  { x: blocksize * 19, y: under_ground - blocksize * 18, w: blocksize, h: blocksize, r: 1, btype: "needle"},
+  { x: blocksize * 20, y: under_ground - blocksize * 18, w: blocksize, h: blocksize, r: 1, btype: "needle"},
+  { x: blocksize * 21, y: under_ground - blocksize * 18, w: blocksize, h: blocksize, r: 1, btype: "needle"},
+  { x: blocksize * 22, y: under_ground - blocksize * 18, w: blocksize, h: blocksize, r: 1, btype: "needle"},
+  { x: blocksize * 23, y: under_ground - blocksize * 18, w: blocksize, h: blocksize, r: 1, btype: "needle"},
 
   { x: blocksize * 4, y: under_ground - blocksize * 23, w: blocksize, h: blocksize, r: 1, btype: "save"},
   { x: blocksize * 2, y: under_ground - blocksize * 24, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
@@ -455,7 +464,7 @@ function update() {
       if (isJump) {
         updatedY = y + vy;
 
-        if(vy < 12){
+        if(vy < 10){
           vy += 0.4;
         }
 
@@ -487,7 +496,11 @@ function update() {
           updatedY = result.chatacter_updatedY;
         }else if(blockTargetIsTouch.btype == "needle"){
           getNeedleMarkPoint(updatedX, updatedY, blockTargetIsTouch.x, blockTargetIsTouch.y, blockTargetIsTouch.h, blockTargetIsTouch.w, blockTargetIsTouch.r);
-        }else{}
+        }else if(blockTargetIsTouch.btype == "save"){
+          RestartX = x;
+          RestartY = y;
+          SetGimmicks(blockTargetIsTouch,1);
+        }
       }
 
       if (y > 820 || 14 > y) {
@@ -504,6 +517,7 @@ function update() {
 
     if (input_key_buffer[82]) {
       isJump = false;
+      CanSecondJump = true;
       updatedX = RestartX;
       updatedY = RestartY;
       vy = 0;
@@ -516,9 +530,9 @@ function update() {
     for (const Bullet of Bulletlocations){
       if(Bullet.valid == false) continue;
       if(Bullet.Isright){
-        Bullet.bulletX += 15;
+        Bullet.bulletX += 32;
       }else{
-        Bullet.bulletX -= 15;
+        Bullet.bulletX -= 32;
       }
 
       const Bulletblock = getBlockTargetIsTouch(Bullet.bulletX, Bullet.bulletY, 3, 3);
