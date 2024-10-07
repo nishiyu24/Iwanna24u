@@ -577,7 +577,7 @@ function update() {
           getNeedleMarkPoint(updatedX, updatedY, blockTargetIsTouch.x, blockTargetIsTouch.y, blockTargetIsTouch.h, blockTargetIsTouch.w, blockTargetIsTouch.r);
         }else if (getBlockTargetIsOn(x, y, updatedX, updatedY).btype == "jump"){
           Highjump =true;
-        }else if (getBlockTargetIsOn(x, y, updatedX, updatedY).btype == "wakway"){
+        }else if (getBlockTargetIsOn(x, y, updatedX, updatedY).btype == "walkway"){
           updatedX = x + 2.7;
         }
       }
