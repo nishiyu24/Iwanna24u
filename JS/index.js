@@ -531,12 +531,6 @@ function update() {
             Jumping = false;
             CanSecondJump = true;
             Highjump =true;
-          }else if (blockTargetIsOn.btype == "walkway"){
-            updatedY = blockTargetIsOn.y - characterSizeY;
-            isJump = false; // ジャンプ状態を解除
-            Jumping = false;
-            CanSecondJump = true;
-            updatedX = x + 2.7;
           }else{
             updatedY = blockTargetIsOn.y - characterSizeY;
             isJump = false; // ジャンプ状態を解除
