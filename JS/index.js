@@ -563,17 +563,18 @@ function update() {
 
         
       } else {
-        if (getBlockTargetIsOn(x, y, updatedX, updatedY) == null) {
+        let roundBlock = getBlockTargetIsOn(x, y, updatedX, updatedY);
+        if (roundBlock.btype == null) {
           isJump = true;
           CanSecondJump = true;
           Highjump = false;
           vy = 0;
-        }else if(getBlockTargetIsOn(x, y, updatedX, updatedY).btype == "needle"){
+        }else if(roundBlock.btype == "needle"){
           getNeedleMarkPoint(updatedX, updatedY, blockTargetIsTouch.x, blockTargetIsTouch.y, blockTargetIsTouch.h, blockTargetIsTouch.w, blockTargetIsTouch.r);
           Highjump = false;
-        }else if (getBlockTargetIsOn(x, y, updatedX, updatedY).btype == "jump"){
+        }else if (roundBlock.btype == "jump"){
           Highjump =true;
-        }else if (getBlockTargetIsOn(x, y, updatedX, updatedY).btype == "walkway"){
+        }else if (roundBlock.btype == "walkway"){
           updatedX = updatedX + 2;
           Highjump = false;
         }
