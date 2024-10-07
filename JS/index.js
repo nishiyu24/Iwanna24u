@@ -563,7 +563,7 @@ function update() {
 
         
       } else {
-        let roundBlock = getBlockTargetIsOn(x, y, updatedX, updatedY);
+        const roundBlock = getBlockTargetIsOn(x, y, updatedX, updatedY);
         if (roundBlock.btype == null) {
           isJump = true;
           CanSecondJump = true;
