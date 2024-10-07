@@ -765,20 +765,20 @@ function calculateNeedlePoints(blockx, blocky, blockh, blockw, blockr) {
 
   // 針の向きに応じて三角形の頂点を設定
   if (blockr == 1) {
-    p1 = [blockx, blocky + blockh - 5]; // 右下
-    p2 = [blockx + blockw, blocky + blockh - 5]; // 左下
+    p1 = [blockx, blocky + blockh]; // 右下
+    p2 = [blockx + blockw, blocky + blockh]; // 左下
     p3 = [blockx + blockw / 2, blocky]; // 上の中心
   } else if (blockr == 2) {
-    p1 = [blockx + 5, blocky]; // 左上
-    p2 = [blockx + 5, blocky + blockh]; // 左下
+    p1 = [blockx, blocky]; // 左上
+    p2 = [blockx, blocky + blockh]; // 左下
     p3 = [blockx + blockw, blocky + blockh / 2]; // 右の中心
   } else if (blockr == 3) {
-    p1 = [blockx, blocky + 5]; // 左上
-    p2 = [blockx + blockw, blocky + 5]; // 右上
+    p1 = [blockx, blocky]; // 左上
+    p2 = [blockx + blockw, blocky]; // 右上
     p3 = [blockx + blockw / 2, blocky + blockh]; // 下の中心
   } else if (blockr == 4) {
-    p1 = [blockx + blockw - 5, blocky]; // 右上
-    p2 = [blockx + blockw - 5, blocky + blockh]; // 右下
+    p1 = [blockx + blockw, blocky]; // 右上
+    p2 = [blockx + blockw, blocky + blockh]; // 右下
     p3 = [blockx, blocky + blockh / 2]; // 左の中心
   }
 
