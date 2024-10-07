@@ -39,6 +39,12 @@ function handleKeydown(e) {
     jump1SE.play();
     isJump = true;  // ジャンプ開始フラグ
     vy = -10;  // 初期ジャンプ速度
+  }else if(Highjump){
+    jump1SE.load();
+    jump1SE.play();
+    isJump = true;  // ジャンプ開始フラグ
+    Highjump = false;
+    vy = -30;  // 初期ジャンプ速度
   }else if((e.keyCode === 38 || e.keyCode === 32) && isJump && CanSecondJump && Jumping){
     jump2SE.load();
     jump2SE.play();
@@ -121,6 +127,7 @@ var vy = 0;
 var isJump = false;
 var Jumping = false;
 var CanSecondJump = true;
+var Highjump = false;
 
 // ゲームオーバーか否かのフラグ値
 var isGameOver = false;
@@ -379,6 +386,7 @@ const blocks = [
 
   { x: blocksize * 26, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
   { x: blocksize * 25, y: under_ground - blocksize * 4, w: blocksize, h: blocksize, r: 1, btype: "save"},
+  { x: blocksize * 27, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "jump"},
 ];
 
 drawBackground(blocks);
@@ -410,7 +418,9 @@ async function drawBackground(structs) {
     } else if (struct.btype == 'needle') {
       src = `./image/ground/Needle-00${struct.r}.png`;
     } else if (struct.btype == 'save') {
-      src = './image/ground/Save1.png'; // 新しいソース
+      src = './image/ground/Save1.png';
+    } else if (struct.btype == 'jump') {
+      src = './image/ground/Accele-001.png';
     } else if (struct.btype == 'step') {
       // 画像を使わない場合の分岐: ここでPromiseを返して描画後にnullで処理する
       return Promise.resolve(null);
@@ -515,7 +525,8 @@ function update() {
           if(blockTargetIsOn.btype == "needle"){
             getNeedleMarkPoint(updatedX, updatedY, blockTargetIsOn.x, blockTargetIsOn.y, blockTargetIsOn.h, blockTargetIsOn.w, blockTargetIsOn.r);
           }else if (blockTargetIsOn.btype == "step" || blockTargetIsOn.btype == "save"){
-
+          }else if (blockTargetIsOn.btype == "jump"){
+            Highjump =true;
           }else{
             updatedY = blockTargetIsOn.y - characterSizeY;
             isJump = false; // ジャンプ状態を解除
@@ -540,6 +551,8 @@ function update() {
             SetGimmicks(blockTargetIsTouch,1);
           }else if(blockTargetIsTouch.btype == "step"){
             CanSecondJump = true;
+          }else{
+            
           }
   
         }
