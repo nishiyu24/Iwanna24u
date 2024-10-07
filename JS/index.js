@@ -151,10 +151,10 @@ var toRight = true;
 
 //ステージ配置用構造体配列
 const blocks = [
-  { x: blocksize * 0, y: under_ground - blocksize * 2, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 0, y: under_ground - blocksize * 3, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 0, y: under_ground - blocksize * 4, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 0, y: under_ground - blocksize * 5, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
+  { x: blocksize * 0, y: under_ground - blocksize * 2, w: blocksize, h: blocksize, r: 1, btype: "walkway"},
+  { x: blocksize * 0, y: under_ground - blocksize * 3, w: blocksize, h: blocksize, r: 1, btype: "walkway"},
+  { x: blocksize * 0, y: under_ground - blocksize * 4, w: blocksize, h: blocksize, r: 1, btype: "walkway"},
+  { x: blocksize * 0, y: under_ground - blocksize * 5, w: blocksize, h: blocksize, r: 1, btype: "walkway"},
   { x: blocksize * 0, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
 
   { x: blocksize * 0, y: under_ground - blocksize * 6, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
@@ -421,6 +421,8 @@ async function drawBackground(structs) {
       src = './image/ground/Save1.png';
     } else if (struct.btype == 'jump') {
       src = './image/ground/Accele-001.png';
+    } else if (struct.btype == 'walkway') {
+      src = './image/ground/Accele-002.png';
     } else if (struct.btype == 'step') {
       // 画像を使わない場合の分岐: ここでPromiseを返して描画後にnullで処理する
       return Promise.resolve(null);
@@ -531,6 +533,9 @@ function update() {
             Jumping = false;
             CanSecondJump = true;
             Highjump =true;
+          }else if (blockTargetIsOn.btype == "walkway"){
+            updatedY = blockTargetIsOn.y - characterSizeY;
+            updatedX = x + 2.7;
           }else{
             updatedY = blockTargetIsOn.y - characterSizeY;
             isJump = false; // ジャンプ状態を解除
@@ -571,6 +576,8 @@ function update() {
           getNeedleMarkPoint(updatedX, updatedY, blockTargetIsTouch.x, blockTargetIsTouch.y, blockTargetIsTouch.h, blockTargetIsTouch.w, blockTargetIsTouch.r);
         }else if (getBlockTargetIsOn(x, y, updatedX, updatedY).btype == "jump"){
           Highjump =true;
+        }else if (getBlockTargetIsOn(x, y, updatedX, updatedY).btype == "wakway"){
+          updatedX = x + 2.7;
         }
       }
 
