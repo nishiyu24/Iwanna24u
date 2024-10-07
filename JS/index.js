@@ -572,7 +572,7 @@ function update() {
         }else if (getBlockTargetIsOn(x, y, updatedX, updatedY).btype == "jump"){
           Highjump =true;
         }else if (getBlockTargetIsOn(x, y, updatedX, updatedY).btype == "walkway"){
-          updatedX = x + 2.7;
+          updatedX = updatedX + 2.7;
         }
       }
 
