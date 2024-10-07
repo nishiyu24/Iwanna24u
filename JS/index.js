@@ -110,8 +110,8 @@ var x = 50;
 var y = 700;
 var characterSizeX = 10;
 var characterSizeY = 17;
-var RestartX = 150;
-var RestartY = 100;
+var RestartX = 50;
+var RestartY = 700;
 var under_ground = 800;
 var blocksize = 32;
 
