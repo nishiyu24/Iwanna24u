@@ -526,6 +526,10 @@ function update() {
             getNeedleMarkPoint(updatedX, updatedY, blockTargetIsOn.x, blockTargetIsOn.y, blockTargetIsOn.h, blockTargetIsOn.w, blockTargetIsOn.r);
           }else if (blockTargetIsOn.btype == "step" || blockTargetIsOn.btype == "save"){
           }else if (blockTargetIsOn.btype == "jump"){
+            updatedY = blockTargetIsOn.y - characterSizeY;
+            isJump = false; // ジャンプ状態を解除
+            Jumping = false;
+            CanSecondJump = true;
             Highjump =true;
           }else{
             updatedY = blockTargetIsOn.y - characterSizeY;
@@ -565,6 +569,8 @@ function update() {
           vy = 0;
         }else if(getBlockTargetIsOn(x, y, updatedX, updatedY).btype == "needle"){
           getNeedleMarkPoint(updatedX, updatedY, blockTargetIsTouch.x, blockTargetIsTouch.y, blockTargetIsTouch.h, blockTargetIsTouch.w, blockTargetIsTouch.r);
+        }else if (getBlockTargetIsOn(x, y, updatedX, updatedY).btype == "jump"){
+          Highjump =true;
         }
       }
 
