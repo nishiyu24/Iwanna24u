@@ -39,7 +39,7 @@ function handleKeydown(e) {
     jump1SE.play();
     isJump = true;  // ジャンプ開始フラグ
     vy = -10;  // 初期ジャンプ速度
-  }else if(Highjump){
+  }else if((e.keyCode === 38 || e.keyCode === 32)&& !isJump && Highjump){
     jump1SE.load();
     jump1SE.play();
     isJump = true;  // ジャンプ開始フラグ
