@@ -151,10 +151,10 @@ var toRight = true;
 
 //ステージ配置用構造体配列
 const blocks = [
-  { x: blocksize * 0, y: under_ground - blocksize * 2, w: blocksize, h: blocksize, r: 1, btype: "walkway"},
-  { x: blocksize * 0, y: under_ground - blocksize * 3, w: blocksize, h: blocksize, r: 1, btype: "walkway"},
-  { x: blocksize * 0, y: under_ground - blocksize * 4, w: blocksize, h: blocksize, r: 1, btype: "walkway"},
-  { x: blocksize * 0, y: under_ground - blocksize * 5, w: blocksize, h: blocksize, r: 1, btype: "walkway"},
+  { x: blocksize * 0, y: under_ground - blocksize * 2, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
+  { x: blocksize * 0, y: under_ground - blocksize * 3, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
+  { x: blocksize * 0, y: under_ground - blocksize * 4, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
+  { x: blocksize * 0, y: under_ground - blocksize * 5, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
   { x: blocksize * 0, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
 
   { x: blocksize * 0, y: under_ground - blocksize * 6, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
@@ -197,9 +197,9 @@ const blocks = [
   { x: blocksize * 4, y: under_ground - blocksize * 19, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
   { x: blocksize * 4, y: under_ground - blocksize * 20, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
 
-  { x: blocksize * 1, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 2, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 1, y: under_ground - blocksize * 5, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
+  { x: blocksize * 1, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "walkway"},
+  { x: blocksize * 2, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "walkway"},
+  { x: blocksize * 1, y: under_ground - blocksize * 5, w: blocksize, h: blocksize, r: 1, btype: "walkway"},
   { x: blocksize * 3, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
   { x: blocksize * 4, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
   { x: blocksize * 4, y: under_ground - blocksize * 2, w: blocksize, h: blocksize, r: 1, btype: "needle"},
