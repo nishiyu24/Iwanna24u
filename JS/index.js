@@ -34,7 +34,7 @@ function handleKeydown(e) {
   }
 
   // ジャンプボタン(38:上矢印, 32:スペース)が押された時
-  if ((e.keyCode === 38 || e.keyCode === 32) && !isJump) {
+  if ((e.keyCode === 38 || e.keyCode === 32) && !isJump && !Highjump) {
     jump1SE.load();
     jump1SE.play();
     isJump = true;  // ジャンプ開始フラグ
@@ -44,7 +44,7 @@ function handleKeydown(e) {
     jump1SE.play();
     isJump = true;  // ジャンプ開始フラグ
     Highjump = false;
-    vy = -30;  // 初期ジャンプ速度
+    vy = -20;  // 初期ジャンプ速度
   }else if((e.keyCode === 38 || e.keyCode === 32) && isJump && CanSecondJump && Jumping){
     jump2SE.load();
     jump2SE.play();
