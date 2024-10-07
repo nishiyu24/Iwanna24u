@@ -575,7 +575,7 @@ function update() {
       }
 
 
-      if (y > 820 || 14 > y) {
+      if (y > 820) {
         isGameOver = true;
       }
 
