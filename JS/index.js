@@ -197,11 +197,7 @@ const blocks = [
   { x: blocksize * 4, y: under_ground - blocksize * 19, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
   { x: blocksize * 4, y: under_ground - blocksize * 20, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
 
-  { x: blocksize * 1, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 2, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
   { x: blocksize * 1, y: under_ground - blocksize * 5, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 3, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 4, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
   { x: blocksize * 4, y: under_ground - blocksize * 2, w: blocksize, h: blocksize, r: 1, btype: "needle"},
   { x: blocksize * 5, y: under_ground - blocksize * 2, w: blocksize, h: blocksize, r: 1, btype: "needle"},
   { x: blocksize * 5, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
