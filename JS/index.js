@@ -385,6 +385,34 @@ const blocks = [
   { x: blocksize * 27, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "jump"},
 ];
 
+var AnimationPNG = [
+  './image/character/walk/Kid-walk-right-000.png',
+  './image/character/walk/Kid-walk-right-001.png',
+  './image/character/walk/Kid-walk-right-002.png',
+  './image/character/walk/Kid-walk-right-003.png',
+  './image/character/walk/Kid-walk-right-004.png',
+  './image/character/walk/Kid-walk-right-005.png',
+  './image/character/walk/Kid-walk-left-000.png',
+  './image/character/walk/Kid-walk-left-001.png',
+  './image/character/walk/Kid-walk-left-002.png',
+  './image/character/walk/Kid-walk-left-003.png',
+  './image/character/walk/Kid-walk-left-004.png',
+  './image/character/walk/Kid-walk-left-005.png',
+  './image/character/jump/Kid-jump-right-up.png',
+  './image/character/jump/Kid-jump-right-fall.png',
+  './image/character/jump/Kid-jump-left-up.png',
+  './image/character/jump/Kid-jump-left-fall.png',
+];
+
+window.onload = function(){
+
+  // 画像プリロード
+  for (i = 0; i < AnimationPNG.length; i++){
+      var img = document.createElement('img');
+      img.src = AnimationPNG[i];
+  }
+}
+
 drawBackground(blocks);
 // ロード時に画面描画の処理が実行されるようにする
 window.addEventListener("load", update);
@@ -563,6 +591,7 @@ function update() {
 
         
       } else {
+        Highjump =false;
         if (getBlockTargetIsOn(x, y, updatedX, updatedY) == null) {
           isJump = true;
           CanSecondJump = true;
@@ -574,7 +603,7 @@ function update() {
         }else if (getBlockTargetIsOn(x, y, updatedX, updatedY).btype == "walkway"){
           updatedX = updatedX + 2;
         }else{
-
+          //例外
         }
       }
 
