@@ -1,6 +1,5 @@
 ///////////////////////入力処理//////////////////////////////
-
-
+import { getCSV, blocks } from './blocks.js';
 // キーボードの入力状態を記録する配列の定義
 var input_key_buffer = new Array();
 
@@ -118,8 +117,6 @@ var characterSizeX = 10;
 var characterSizeY = 17;
 var RestartX = 50;
 var RestartY = 700;
-var under_ground = 800;
-var blocksize = 32;
 
 // 上下方向の速度
 var vy = 0;
@@ -149,242 +146,6 @@ var isFall = false
 // 右向きか否か
 var toRight = true;
 
-//ステージ配置用構造体配列
-const blocks = [
-  { x: blocksize * 0, y: under_ground - blocksize * 2, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 0, y: under_ground - blocksize * 3, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 0, y: under_ground - blocksize * 4, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 0, y: under_ground - blocksize * 5, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 0, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-
-  { x: blocksize * 0, y: under_ground - blocksize * 6, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 0, y: under_ground - blocksize * 7, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 0, y: under_ground - blocksize * 8, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 0, y: under_ground - blocksize * 9, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 1, y: under_ground - blocksize * 9, w: blocksize, h: blocksize, r: 2, btype: "needle"},
-  { x: blocksize * 0, y: under_ground - blocksize * 10, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 0, y: under_ground - blocksize * 11, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 0, y: under_ground - blocksize * 12, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 0, y: under_ground - blocksize * 13, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 0, y: under_ground - blocksize * 14, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 0, y: under_ground - blocksize * 15, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 0, y: under_ground - blocksize * 16, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 0, y: under_ground - blocksize * 17, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 1, y: under_ground - blocksize * 17, w: blocksize, h: blocksize, r: 2, btype: "needle"},
-  { x: blocksize * 0, y: under_ground - blocksize * 18, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 0, y: under_ground - blocksize * 19, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 0, y: under_ground - blocksize * 20, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 0, y: under_ground - blocksize * 21, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 0, y: under_ground - blocksize * 22, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 0, y: under_ground - blocksize * 23, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 0, y: under_ground - blocksize * 24, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 1, y: under_ground - blocksize * 24, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 3, y: under_ground - blocksize * 13, w: blocksize, h: blocksize, r: 4, btype: "needle"},
-  { x: blocksize * 3, y: under_ground - blocksize * 19, w: blocksize, h: blocksize, r: 4, btype: "needle"},
-
-
-  { x: blocksize * 4, y: under_ground - blocksize * 8, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 4, y: under_ground - blocksize * 9, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 4, y: under_ground - blocksize * 10, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 4, y: under_ground - blocksize * 11, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 4, y: under_ground - blocksize * 12, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 4, y: under_ground - blocksize * 13, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 4, y: under_ground - blocksize * 14, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 4, y: under_ground - blocksize * 15, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 4, y: under_ground - blocksize * 16, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 4, y: under_ground - blocksize * 17, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 4, y: under_ground - blocksize * 18, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 4, y: under_ground - blocksize * 19, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 4, y: under_ground - blocksize * 20, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-
-  { x: blocksize * 1, y: under_ground - blocksize * 5, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 4, y: under_ground - blocksize * 2, w: blocksize, h: blocksize, r: 1, btype: "needle"},
-  { x: blocksize * 5, y: under_ground - blocksize * 2, w: blocksize, h: blocksize, r: 1, btype: "needle"},
-  { x: blocksize * 5, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 6, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 7, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 8, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 9, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 10, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 8, y: under_ground - blocksize * 4, w: blocksize, h: blocksize, r: 3, btype: "needle"},
-  { x: blocksize * 8, y: under_ground - blocksize * 2, w: blocksize, h: blocksize, r: 1, btype: "needle"},
-
-
-  { x: blocksize * 11, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 12, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 13, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 14, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 13, y: under_ground - blocksize * 2, w: blocksize, h: blocksize, r: 1, btype: "needle"},
-  { x: blocksize * 14, y: under_ground - blocksize * 4, w: blocksize, h: blocksize, r: 3, btype: "needle"},
-  { x: blocksize * 15, y: under_ground - blocksize * 2, w: blocksize, h: blocksize, r: 1, btype: "needle"},
-
-  { x: blocksize * 20.5, y: under_ground - blocksize * 4, w: blocksize, h: blocksize, r: 3, btype: "needle"},
-  { x: blocksize * 21, y: under_ground - blocksize * 2, w: blocksize, h: blocksize, r: 1, btype: "needle"},
-  { x: blocksize * 21.5, y: under_ground - blocksize * 4, w: blocksize, h: blocksize, r: 3, btype: "needle"},
-
-
-  { x: blocksize * 15, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 16, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 17, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 18, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 19, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 20, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 21, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 22, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 23, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 24, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 25, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 0, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 1, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "walkway"},
-  { x: blocksize * 2, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "walkway"},
-  { x: blocksize * 3, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "walkway"},
-  { x: blocksize * 4, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "walkway"},
-  { x: blocksize * 2, y: under_ground - blocksize * 5, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 3, y: under_ground - blocksize * 5, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 4, y: under_ground - blocksize * 5, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 5, y: under_ground - blocksize * 5, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 6, y: under_ground - blocksize * 5, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 7, y: under_ground - blocksize * 5, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 8, y: under_ground - blocksize * 5, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 9, y: under_ground - blocksize * 5, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 10, y: under_ground - blocksize * 5, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 11, y: under_ground - blocksize * 5, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 12, y: under_ground - blocksize * 5, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 13, y: under_ground - blocksize * 5, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 14, y: under_ground - blocksize * 5, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 15, y: under_ground - blocksize * 5, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 16, y: under_ground - blocksize * 5, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 17, y: under_ground - blocksize * 5, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 18, y: under_ground - blocksize * 5, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 19, y: under_ground - blocksize * 5, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 20, y: under_ground - blocksize * 5, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 21, y: under_ground - blocksize * 5, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 22, y: under_ground - blocksize * 5, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 23, y: under_ground - blocksize * 5, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 24, y: under_ground - blocksize * 5, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 25, y: under_ground - blocksize * 5, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 25, y: under_ground - blocksize * 7, w: blocksize, h: blocksize, r: 3, btype: "needle"},
-  { x: blocksize * 25, y: under_ground - blocksize * 8, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 25, y: under_ground - blocksize * 10, w: blocksize, h: blocksize, r: 3, btype: "needle"},
-  { x: blocksize * 25, y: under_ground - blocksize * 11, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 25, y: under_ground - blocksize * 13, w: blocksize, h: blocksize, r: 3, btype: "needle"},
-  { x: blocksize * 25, y: under_ground - blocksize * 14, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 25, y: under_ground - blocksize * 16, w: blocksize, h: blocksize, r: 3, btype: "needle"},
-  { x: blocksize * 25, y: under_ground - blocksize * 17, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 25, y: under_ground - blocksize * 19, w: blocksize, h: blocksize, r: 3, btype: "needle"},
-  { x: blocksize * 25, y: under_ground - blocksize * 20, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 24, y: under_ground - blocksize * 6, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 24, y: under_ground - blocksize * 7, w: blocksize, h: blocksize, r: 3, btype: "Nground"},
-  { x: blocksize * 24, y: under_ground - blocksize * 8, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 24, y: under_ground - blocksize * 9, w: blocksize, h: blocksize, r: 3, btype: "Nground"},
-  { x: blocksize * 24, y: under_ground - blocksize * 10, w: blocksize, h: blocksize, r: 3, btype: "Nground"},
-  { x: blocksize * 24, y: under_ground - blocksize * 11, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 24, y: under_ground - blocksize * 12, w: blocksize, h: blocksize, r: 3, btype: "Nground"},
-  { x: blocksize * 24, y: under_ground - blocksize * 13, w: blocksize, h: blocksize, r: 3, btype: "Nground"},
-  { x: blocksize * 24, y: under_ground - blocksize * 14, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 24, y: under_ground - blocksize * 15, w: blocksize, h: blocksize, r: 3, btype: "Nground"},
-  { x: blocksize * 24, y: under_ground - blocksize * 16, w: blocksize, h: blocksize, r: 3, btype: "Nground"},
-  { x: blocksize * 24, y: under_ground - blocksize * 17, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 24, y: under_ground - blocksize * 18, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 24, y: under_ground - blocksize * 19, w: blocksize, h: blocksize, r: 3, btype: "Nground"},
-  { x: blocksize * 24, y: under_ground - blocksize * 20, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-
-
-  { x: blocksize * 5, y: under_ground - blocksize * 17, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 6, y: under_ground - blocksize * 17, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 7, y: under_ground - blocksize * 17, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 8, y: under_ground - blocksize * 17, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 9, y: under_ground - blocksize * 17, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 10, y: under_ground - blocksize * 17, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 11, y: under_ground - blocksize * 17, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 12, y: under_ground - blocksize * 17, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 13, y: under_ground - blocksize * 17, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 14, y: under_ground - blocksize * 17, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 15, y: under_ground - blocksize * 17, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 16, y: under_ground - blocksize * 17, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 17, y: under_ground - blocksize * 17, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 18, y: under_ground - blocksize * 17, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 19, y: under_ground - blocksize * 17, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 20, y: under_ground - blocksize * 17, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 21, y: under_ground - blocksize * 17, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 22, y: under_ground - blocksize * 17, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 23, y: under_ground - blocksize * 17, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 24, y: under_ground - blocksize * 17, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 25, y: under_ground - blocksize * 17, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-
-  { x: blocksize * 5, y: under_ground - blocksize * 18, w: blocksize, h: blocksize, r: 1, btype: "needle"},
-  { x: blocksize * 6, y: under_ground - blocksize * 18, w: blocksize, h: blocksize, r: 1, btype: "needle"},
-  { x: blocksize * 7, y: under_ground - blocksize * 18, w: blocksize, h: blocksize, r: 1, btype: "needle"},
-  { x: blocksize * 8, y: under_ground - blocksize * 18, w: blocksize, h: blocksize, r: 1, btype: "needle"},
-  { x: blocksize * 9, y: under_ground - blocksize * 18, w: blocksize, h: blocksize, r: 1, btype: "needle"},
-  { x: blocksize * 10, y: under_ground - blocksize * 18, w: blocksize, h: blocksize, r: 1, btype: "needle"},
-  { x: blocksize * 11, y: under_ground - blocksize * 18, w: blocksize, h: blocksize, r: 1, btype: "needle"},
-  { x: blocksize * 12, y: under_ground - blocksize * 18, w: blocksize, h: blocksize, r: 1, btype: "needle"},
-  { x: blocksize * 13, y: under_ground - blocksize * 18, w: blocksize, h: blocksize, r: 1, btype: "needle"},
-  { x: blocksize * 14, y: under_ground - blocksize * 18, w: blocksize, h: blocksize, r: 1, btype: "needle"},
-  { x: blocksize * 15, y: under_ground - blocksize * 18, w: blocksize, h: blocksize, r: 1, btype: "needle"},
-  { x: blocksize * 16, y: under_ground - blocksize * 18, w: blocksize, h: blocksize, r: 1, btype: "needle"},
-
-  { x: blocksize * 6, y: under_ground - blocksize * 23, w: blocksize, h: blocksize, r: 3, btype: "needle"},
-  { x: blocksize * 7, y: under_ground - blocksize * 23, w: blocksize, h: blocksize, r: 3, btype: "needle"},
-  { x: blocksize * 8, y: under_ground - blocksize * 23, w: blocksize, h: blocksize, r: 3, btype: "needle"},
-  { x: blocksize * 9, y: under_ground - blocksize * 23, w: blocksize, h: blocksize, r: 3, btype: "needle"},
-  { x: blocksize * 10, y: under_ground - blocksize * 23, w: blocksize, h: blocksize, r: 3, btype: "needle"},
-  { x: blocksize * 11, y: under_ground - blocksize * 23, w: blocksize, h: blocksize, r: 3, btype: "needle"},
-  { x: blocksize * 12, y: under_ground - blocksize * 23, w: blocksize, h: blocksize, r: 3, btype: "needle"},
-  { x: blocksize * 13, y: under_ground - blocksize * 23, w: blocksize, h: blocksize, r: 3, btype: "needle"},
-  { x: blocksize * 14, y: under_ground - blocksize * 23, w: blocksize, h: blocksize, r: 3, btype: "needle"},
-  { x: blocksize * 15, y: under_ground - blocksize * 23, w: blocksize, h: blocksize, r: 3, btype: "needle"},
-  { x: blocksize * 16, y: under_ground - blocksize * 23, w: blocksize, h: blocksize, r: 3, btype: "needle"},
-
-  { x: blocksize * 7, y: under_ground - blocksize * 20, w: blocksize/4, h: blocksize/4, r: 1, btype: "step"},
-  { x: blocksize * 10, y: under_ground - blocksize * 20, w: blocksize/4, h: blocksize/4, r: 1, btype: "step"},
-  { x: blocksize * 13, y: under_ground - blocksize * 20, w: blocksize/4, h: blocksize/4, r: 1, btype: "step"},
-  { x: blocksize * 16, y: under_ground - blocksize * 20, w: blocksize/4, h: blocksize/4, r: 1, btype: "step"},
-  { x: blocksize * 19, y: under_ground - blocksize * 20, w: blocksize/4, h: blocksize/4, r: 1, btype: "step"},
-  { x: blocksize * 22, y: under_ground - blocksize * 20, w: blocksize/4, h: blocksize/4, r: 1, btype: "step"},
-
-  { x: blocksize * 17, y: under_ground - blocksize * 18, w: blocksize, h: blocksize, r: 1, btype: "needle"},
-  { x: blocksize * 18, y: under_ground - blocksize * 18, w: blocksize, h: blocksize, r: 1, btype: "needle"},
-  { x: blocksize * 19, y: under_ground - blocksize * 18, w: blocksize, h: blocksize, r: 1, btype: "needle"},
-  { x: blocksize * 20, y: under_ground - blocksize * 18, w: blocksize, h: blocksize, r: 1, btype: "needle"},
-  { x: blocksize * 21, y: under_ground - blocksize * 18, w: blocksize, h: blocksize, r: 1, btype: "needle"},
-  { x: blocksize * 22, y: under_ground - blocksize * 18, w: blocksize, h: blocksize, r: 1, btype: "needle"},
-  { x: blocksize * 23, y: under_ground - blocksize * 18, w: blocksize, h: blocksize, r: 1, btype: "needle"},
-
-  { x: blocksize * 4, y: under_ground - blocksize * 22, w: blocksize, h: blocksize, r: 1, btype: "save"},
-  { x: blocksize * 4, y: under_ground - blocksize * 24, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 2, y: under_ground - blocksize * 24, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 3, y: under_ground - blocksize * 24, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 5, y: under_ground - blocksize * 24, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 6, y: under_ground - blocksize * 24, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 7, y: under_ground - blocksize * 24, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 8, y: under_ground - blocksize * 24, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 9, y: under_ground - blocksize * 24, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 10, y: under_ground - blocksize * 24, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 11, y: under_ground - blocksize * 24, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 12, y: under_ground - blocksize * 24, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 13, y: under_ground - blocksize * 24, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 14, y: under_ground - blocksize * 24, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 15, y: under_ground - blocksize * 24, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 16, y: under_ground - blocksize * 24, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 17, y: under_ground - blocksize * 24, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 18, y: under_ground - blocksize * 24, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 19, y: under_ground - blocksize * 24, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 20, y: under_ground - blocksize * 24, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 21, y: under_ground - blocksize * 24, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 22, y: under_ground - blocksize * 24, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 23, y: under_ground - blocksize * 24, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 24, y: under_ground - blocksize * 23, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 24, y: under_ground - blocksize * 24, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 25, y: under_ground - blocksize * 24, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 25, y: under_ground - blocksize * 23, w: blocksize, h: blocksize, r: 1, btype: "save"},
-
-  { x: blocksize * 26, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "Nground"},
-  { x: blocksize * 25, y: under_ground - blocksize * 4, w: blocksize, h: blocksize, r: 1, btype: "save"},
-  { x: blocksize * 27, y: under_ground - blocksize * 1, w: blocksize, h: blocksize, r: 1, btype: "jump"},
-];
-
 var AnimationPNG = [
   './image/character/walk/Kid-walk-right-000.png',
   './image/character/walk/Kid-walk-right-001.png',
@@ -404,6 +165,7 @@ var AnimationPNG = [
   './image/character/jump/Kid-jump-left-fall.png',
 ];
 
+/*
 window.onload = function(){
 
   // 画像プリロード
@@ -412,8 +174,15 @@ window.onload = function(){
       img.src = AnimationPNG[i];
   }
 }
+*/
+getCSV().then((blocks) => 
+  {
+    drawBackground(blocks);
+  }).catch((error) => 
+  {
+    console.error(error); // エラー処理
+  });
 
-drawBackground(blocks);
 // ロード時に画面描画の処理が実行されるようにする
 window.addEventListener("load", update);
 
@@ -437,21 +206,21 @@ async function drawBackground(structs) {
   const promises = structs.map(struct => {
     let src;
     // 画像を使用する場合
-    if (struct.btype == 'Nground') {
-      src = './image/ground/Grasslands.png';
-    } else if (struct.btype == 'needle') {
-      src = `./image/ground/Needle-00${struct.r}.png`;
-    } else if (struct.btype == 'save') {
+    if (struct.bclass == 'Nground') {
+      src = `./image/ground/land-00${struct.btype}.png`;
+    } else if (struct.bclass == 'needle') {
+      src = `./image/ground/Needle-00${struct.btype}.png`;
+    } else if (struct.bclass == 'save') {
       src = './image/ground/Save1.png';
-    } else if (struct.btype == 'jump') {
+    } else if (struct.bclass == 'jump') {
       src = './image/ground/Accele-001.png';
-    } else if (struct.btype == 'walkway') {
+    } else if (struct.bclass == 'walkway') {
       src = './image/ground/Accele-002.png';
-    } else if (struct.btype == 'step') {
+    } else if (struct.bclass == 'step') {
       // 画像を使わない場合の分岐: ここでPromiseを返して描画後にnullで処理する
       return Promise.resolve(null);
     } else {
-      console.error(`Unknown btype: ${struct.btype}`);
+      console.error(`Unknown bclass: ${struct.bclass}`);
       return Promise.resolve(null); // 無効なタイプの場合はnullを返す
     }
     return loadImage(src);
@@ -464,7 +233,7 @@ async function drawBackground(structs) {
     if (image) {
       // 画像を使って描画
       offscreenCtx.drawImage(image, struct.x, struct.y, struct.w, struct.h);
-    } else if (struct.btype == 'step') {
+    } else if (struct.bclass == 'step') {
       // fillRectを使って矩形を描画
       offscreenCtx.fillStyle = struct.color || 'black'; // 色の指定がない場合は黒
       const Stepsize = 8; 
@@ -472,8 +241,6 @@ async function drawBackground(structs) {
     }
   });
 }
-
-
 
 ///////////////////////////////////////////////////////////
 /*/////////////////  メイン繰り返し部分  /////////////////*/
@@ -546,14 +313,13 @@ function update() {
 
         const blockTargetIsOn = getBlockTargetIsOn(x, y, updatedX, updatedY);
         if (blockTargetIsOn !== null) {
-          let debug = document.getElementById("test");
-          debug.innerHTML = blockTargetIsOn.btype;
-          
-          if(blockTargetIsOn.btype == "needle"){
-            getNeedleMarkPoint(updatedX, updatedY, blockTargetIsOn.x, blockTargetIsOn.y, blockTargetIsOn.h, blockTargetIsOn.w, blockTargetIsOn.r);
-          }else if (blockTargetIsOn.btype == "step" || blockTargetIsOn.btype == "save"){
+          //let debug = document.getElementById("test");
+          //debug.innerHTML = blockTargetIsOn.bclass;
+          if(blockTargetIsOn.bclass == "needle"){
+            getNeedleMarkPoint(updatedX, updatedY, blockTargetIsOn.x, blockTargetIsOn.y, blockTargetIsOn.h, blockTargetIsOn.w, blockTargetIsOn.btype);
+          }else if (blockTargetIsOn.bclass == "step" || blockTargetIsOn.bclass == "save"){
             //透過ブロック
-          }else if (blockTargetIsOn.btype == "jump"){
+          }else if (blockTargetIsOn.bclass == "jump"){
             updatedY = blockTargetIsOn.y - characterSizeY;
             isJump = false; // ジャンプ状態を解除
             Jumping = false;
@@ -571,17 +337,17 @@ function update() {
 
         const blockTargetIsTouch = getBlockTargetIsTouch(updatedX, updatedY,characterSizeX,characterSizeY);
         if (blockTargetIsTouch) {
-          if(blockTargetIsTouch.btype == "Nground"){
+          if(blockTargetIsTouch.bclass == "Nground"){
             const result = rollBackPosition(blockTargetIsTouch.x, blockTargetIsTouch.y, blockTargetIsTouch.h, blockTargetIsTouch.w, x, y, updatedX, updatedY);
             updatedX = result.chatacter_updatedX;
             updatedY = result.chatacter_updatedY;
-          }else if(blockTargetIsTouch.btype == "needle"){
-            getNeedleMarkPoint(updatedX, updatedY, blockTargetIsTouch.x, blockTargetIsTouch.y, blockTargetIsTouch.h, blockTargetIsTouch.w, blockTargetIsTouch.r);
-          }else if(blockTargetIsTouch.btype == "save"){
+          }else if(blockTargetIsTouch.bclass == "needle"){
+            getNeedleMarkPoint(updatedX, updatedY, blockTargetIsTouch.x, blockTargetIsTouch.y, blockTargetIsTouch.h, blockTargetIsTouch.w, blockTargetIsTouch.btype);
+          }else if(blockTargetIsTouch.bclass == "save"){
             RestartX = x;
             RestartY = y;
             SetGimmicks(blockTargetIsTouch,1);
-          }else if(blockTargetIsTouch.btype == "step"){
+          }else if(blockTargetIsTouch.bclass == "step"){
             CanSecondJump = true;
           }else{
             
@@ -596,11 +362,11 @@ function update() {
           isJump = true;
           CanSecondJump = true;
           vy = 0;
-        }else if(getBlockTargetIsOn(x, y, updatedX, updatedY).btype == "needle"){
-          getNeedleMarkPoint(updatedX, updatedY, blockTargetIsTouch.x, blockTargetIsTouch.y, blockTargetIsTouch.h, blockTargetIsTouch.w, blockTargetIsTouch.r);
-        }else if (getBlockTargetIsOn(x, y, updatedX, updatedY).btype == "jump"){
+        }else if(getBlockTargetIsOn(x, y, updatedX, updatedY).bclass == "needle"){
+          getNeedleMarkPoint(updatedX, updatedY, blockTargetIsTouch.x, blockTargetIsTouch.y, blockTargetIsTouch.h, blockTargetIsTouch.w, blockTargetIsTouch.btype);
+        }else if (getBlockTargetIsOn(x, y, updatedX, updatedY).bclass == "jump"){
           Highjump =true;
-        }else if (getBlockTargetIsOn(x, y, updatedX, updatedY).btype == "walkway"){
+        }else if (getBlockTargetIsOn(x, y, updatedX, updatedY).bclass == "walkway"){
           updatedX = updatedX + 2;
         }else{
           //例外
@@ -609,17 +375,17 @@ function update() {
 
       const blockTargetIsTouch = getBlockTargetIsTouch(updatedX, updatedY,characterSizeX,characterSizeY);
       if (blockTargetIsTouch) {
-        if(blockTargetIsTouch.btype == "Nground"){
+        if(blockTargetIsTouch.bclass == "Nground"){
           const result = rollBackPosition(blockTargetIsTouch.x, blockTargetIsTouch.y, blockTargetIsTouch.h, blockTargetIsTouch.w, x, y, updatedX, updatedY);
           updatedX = result.chatacter_updatedX;
           updatedY = result.chatacter_updatedY;
-        }else if(blockTargetIsTouch.btype == "needle"){
-          getNeedleMarkPoint(updatedX, updatedY, blockTargetIsTouch.x, blockTargetIsTouch.y, blockTargetIsTouch.h, blockTargetIsTouch.w, blockTargetIsTouch.r);
-        }else if(blockTargetIsTouch.btype == "save"){
+        }else if(blockTargetIsTouch.bclass == "needle"){
+          getNeedleMarkPoint(updatedX, updatedY, blockTargetIsTouch.x, blockTargetIsTouch.y, blockTargetIsTouch.h, blockTargetIsTouch.w, blockTargetIsTouch.btype);
+        }else if(blockTargetIsTouch.bclass == "save"){
           RestartX = x;
           RestartY = y;
           SetGimmicks(blockTargetIsTouch,1);
-        }else if(blockTargetIsTouch.btype == "step"){
+        }else if(blockTargetIsTouch.bclass == "step"){
           CanSecondJump = true;
         }
 
@@ -659,9 +425,9 @@ function update() {
       }
 
       const Bulletblock = getBlockTargetIsTouch(Bullet.bulletX, Bullet.bulletY, 3, 3);
-      if (Bulletblock && Bulletblock.btype == "Nground") {
+      if (Bulletblock && Bulletblock.bclass == "Nground") {
         Bullet.valid = false;
-      } else if (Bulletblock && Bulletblock.btype == "save") {
+      } else if (Bulletblock && Bulletblock.bclass == "save") {
         RestartX = x;
         RestartY = y;
         Bullet.valid = false;
